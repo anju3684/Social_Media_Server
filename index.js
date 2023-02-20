@@ -10,11 +10,13 @@ const { MONGODB } = require("./config.js");
 const express = require("express");
 const { makeExecutableSchema } = require("@graphql-tools/schema");
 const env=require('dotenv')
+const cors=require("cors")
 env.config();
 
 (async function(){
 const app = express();
 const pubsub = new PubSub();
+app.use(cors())
 const httpServer = createServer(app);
 const schema = makeExecutableSchema({
   typeDefs,
